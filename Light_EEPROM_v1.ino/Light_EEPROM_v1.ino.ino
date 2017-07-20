@@ -192,7 +192,7 @@ void loop()
         Serial.println("1 - Display ENABLE Writing");
         Serial.println("2 - Display WRITES in a register");
         Serial.println("3 - Display DISABLE Writing");
-        //delay(1000);
+        delay(1000);
         
         ctr = true;
       }
@@ -201,19 +201,18 @@ void loop()
        std = Serial.read();    
       }
 
-    digitalWrite(HOLD_PIN, HIGH);
+    //digitalWrite(HOLD_PIN, HIGH);
     switch(std)
     {
       case '0':
-        cli();
+        //cli();
         eeprom_spi_read_status();
         eeprom_spi_write_enable();
         eeprom_spi_write_status(status_reg);
         eeprom_spi_write_enable();
         eeprom_spi_write_reg(ADDR,DATA);
         eeprom_spi_read_reg(ADDR);
-        sei();
-        delay(100);
+        //sei();
         std='1';
         break;
       case '1':
@@ -245,5 +244,5 @@ void loop()
         break;
         
     }
-    digitalWrite(HOLD_PIN, LOW);  
+    //digitalWrite(HOLD_PIN, LOW);  
 }
